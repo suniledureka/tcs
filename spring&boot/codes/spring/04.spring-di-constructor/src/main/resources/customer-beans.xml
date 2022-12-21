@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bmw" class="com.tcs.spring.core.beans.Car">
+		<property name="model" value="B M W"/>
+		<property name="cost" value="5300000"/>
+	</bean>
+	<bean id="audi" class="com.tcs.spring.core.beans.Car">
+		<property name="model" value="Audi"/>
+		<property name="cost" value="6275000"/>
+	</bean>
+		
+	<bean id="sanjay" class="com.tcs.spring.core.beans.Customer">
+		<property name="name" value="Sajay Patil"/>	
+		<constructor-arg ref="bmw"></constructor-arg>
+	</bean>
+	
+	<bean id="kapil" class="com.tcs.spring.core.beans.Customer">
+		<constructor-arg value="Kapil Dev"/>
+		<constructor-arg ref="audi"/>
+	</bean>
+	
+
+</beans>

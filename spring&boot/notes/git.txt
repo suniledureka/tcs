@@ -1,0 +1,293 @@
+-> Create a GitHub Repository
+  Login to GitHub
+  Public Repository/ Private Repository
+
+-> Install Git Client Software on the Developer Machine
+Git client software is used to interact with GitHub Repo
+Git Bash CLI to execute Git Commands
+
+Google for "git client download"
+https://git-scm.com/downloads
+Git-2.39.0-64-bit.exe
+
+
+Install it
+
+-> Create a New folder Ex: git/git-practice
+-> Open "Git Bash" from the newly created directory
+$pwd
+$git -v   | git --version
+
+$git help
+$git help <command>   Ex: git help init -> used to show the init git command docs in browser
+
+$git init --> this command is used to create an empty Git Repository or to re-initialize an existing one
+
+$git status --> will display the status of the current repository. - it shows Untracked files, staged files, and un-staged files
+
+a) Untracked files --> newly created files, we need to stage them to commit and will be displayed in red color
+b) Staged files --> files which are added to staging area and are reday to be committed - will be displayed in green color
+c) Un-Staged files --> modified file will be here, we need to stage them to be committed - will be displayed in red color
+
+$touch Welcome.java
+$git status
+
+$git add Welcome.java     --> this command is used to add file to staging area, so that it can be committed
+$git status
+
+$git rm --cached Welcome.java  --> this command is used to remove the file from Staging
+$git status
+
+$git add Welcome.java
+$git status
+
+- create other 2 files
+$touch Demo.java
+$touch Readme.txt
+
+$git status
+$git add --a   --> to add all files at a time to staging
+$git status
+
+$git rm --cached *  --> to unstage all staged files
+
+$git add --a
+$git status
+
+$git commit -m <commit_message> --> this command is used to commit the files in the staging area to local repository (our system) - the message should represent the reason of commit- what was done/changed, why the change, part of which story, is it a bug fix, development story etc. JIRA will provide story ID
+
+$git commit -m "first commit"
+$git status
+-----------------------------------------------------------------------------------------------
+
+-- to commit our files to remote repository - we should execute the below commands --
+
+$git remote add origin <GitHub_Repo_URL>  -- requires only for the first time - to bind our local repo to remote repo
+
+$git push -u origin master  -- to move changes from local repository to central repository
+
+-u --> a flag , stands for up-stream, equivalent to --set-upstream
+origin --> is our default remote repository name
+master --> branch name
+
+-----------------------------------------------------------------------------------------------
+
+$git config --list  ---> command to view all of repo settings
+$git config --global user.name  --> displays username
+git config --global user.email  --> displays email
+
+git config --global user.email "sunil.edureka@gmail.com"  --> to set email
+
+-----------------------------------------------------------------------------------------------
+
+Add a class definition and main(String...args) method to Welcome.java
+
+$git status
+$git add --a
+$git commit -m "added main method to welcome.java"
+$git push
+
+add class definition to Demo.java
+$git status
+
+$git restore Demo.java  ---> to discard changes in working directory
+$git status
+
+add class definition to Demo.java
+
+$git status
+$git add Demo.java
+
+$git restore --staged Demo.java --- to unstage
+$git add --a
+
+$git commit -m 'add class def to Demo.java'
+$git push
+
+---> check in remote repository
+
+Task --- undestand the difference between rm and restore
+
+$git log    --> displays all the commit histroy
+$git log -2 --> displays the last 2 commits
+
+
+added a variable to the main method of Welcome.java
+$git status
+$git checkout -- Welcome.java  ---> it is used to discard changes done -- copies file from centrail repo to local repo
+-----------------------------------------------------------------------------------
+
+---- To push a Java Project to Git Repository using CLI -------
+
+1) create a new java project  - employee-management
+2) create a new GitHub repository - employee-management
+3) come inside project folder and open Git Bash
+4) the files which do not need to be commited to be specified in ".gitignore" file
+$touch .gitignore
+
+to know the contents of .gitignore file (depends on type of type)
+   -> https://github.com/github/gitignore
+   -> search for Java.gitignore & Maven.gitignore copy and paste the contents to our .gitignore file
+
+$git init
+$git status
+$git add --a
+$git status
+$git commit -m "Initial Project Setup"
+$git remote add origin <GitHub_Repo_URL>
+$git push -u origin master
+
+-----------------------------------------------------------------------------------
+
+Git Cloning
+-----------
+$git clone <GitHub_Repo_URL> -- this command is used to take existing project from repository to local system
+
+two developers "Mark" & "Chris"
+
+open Git Bash from "C:\TCS\git\developers\mark"
+$git clone <repo_url>
+
+$open project in eclipse in mark's environment
+
+-- add required java class/interfaces
+-- in Git CLI
+
+$git status
+$git add --a
+$git commit -m "EmployeeDAOImpl task completed"
+$git push
+
+-------------------------------------------------------------------------------------
+Before making any changes to files in local, it is recommended to take latest chnages from centrol repository
+
+$git pull
+
+
+Working with Branches in GitHub
+
+1) What is branch in GitHub Repository?
+2) Why we need branches in Repository?
+3) How to create branches in Git Repository?
+4) How to merge branches in Git Repository?
+5) What is Pull Request?
+6) How to resolve conflicts in code while merging?
+
+
+Branches are nothing but code base
+
+master (default), develop, feature, QA, UAT, SIT, release etc
+
+
+$git branch  --> lists the branch names of the repo , * prefixes the current branch
+
+$git branch -v --> to see the last commit on each branch
+
+$git branch --all /  git branch -a
+
+
+$git branch develop  --> to create a new branch with name "develop" and will not switch to that branch
+$git branch
+
+$git checkout develop  --> to switch to "develop" branch
+$git branch
+
+
+$git checkout -b qa --> to create a new branch and to switch to that newly created branch
+
+$git branch qa + $$git checkout qa = $git checkout -b qa
+
+$git branch
+
+$ git push --set-upstream origin qa  ---> to push the branch to remote repository
+
+$ git clone -b qa <repo_url> ---> to clone a specific branch ("qa") code 
+---------------------------------------------------------
+
+Branch Merging
+--------------
+
+pull request is used to merge the code of one branch to another branch
+once development and unit testing is complete then merge your code changes with parent branch
+to merge changes from one branch to another branch - we will create "Pull Request"
+
+Git Pull vs Git fetch
+---------------------
+
+$git pull --> this command will get latest changes from the central repository to local repository (file transferring will happen)
+
+$git fetch --> this command will tell the latest metadata informations from the central (no file transferring - just to check is there any changes available with remote repo), we should use $git merge
+
+$git fetch + $git merge = $git pull
+
+-----------------------------------------------------------------------------------------
+
+
+
+Working with IDE & GitHub
+
+Eclipse/STS Workspace & Local Repository Setup
+----------------------------------------------
+
+1) Create a Repository in GitHub - employee-management
+2) Create a new Java Project in IDE - employee-management
+
+3) Create a Local Repository and add the Project (files) to Local Repository
+ Right Click on Project > Team > Share Project..
+ Check "Use or create repository in parent folder of project"  OR click on "Create" button
+ > Create Repository
+
+ Check in "Git" Perspective
+ Window (menu) > Perspective > Open Perspective > Other > Git
+
+ Change Java EE Perspective
+ 
+4) to add .gitignore file
+ Right Click on Project > Team > Ignore
+ -- to check that change perspetive to "Git"
+
+get .gitignore file contents --- https://github.com/github/gitignore
+
+5) Add Project files to Git Index (to add files to Staging Area -- similar to $git add --a)
+ Right Click on Project > Team > Add to Index
+
+6) Commit & Push Project files to Central Repo
+
+ Right Click on Project > Team > Commit...
+ check in "Git Staging View"
+ provide a commit message : Initial Commit
+ Click on "Commit and Push"
+ > Click on "Push HEAD"
+
+ provide GitHub user name and Authentication Token
+
+to create an access tocken from GitHub
+ click on profile icon on GitHub in github.com > Settings > Developer settings > Personal Access tokens> Tokens (classic) > Generate New Token 
+-----------------------------------------------------------------------
+Task: Clone a Repository to Eclipse
+
+1) Open Eclipse
+2) Open "Git" Perspective
+3) Right click > Clone a Git Repository.. & provide the details
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
