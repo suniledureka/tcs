@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="cust-1" class="com.tcs.spring.core.beans.Customer">
+		<property name="customerId" value="524167"/>
+		<property name="customerName" value="Sunil Joseph"/>
+		<property name="products">
+			<map>
+				<entry key="Mobile" value="2"/>
+				<entry key="Mouse" value="5"/>
+				<entry key="Keyboard" value="6"/>
+				<entry key="memory" value="1"/>
+			</map>
+		</property>
+	</bean>
+</beans>
