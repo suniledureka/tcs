@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="account" class="com.tcs.spring.aop.beans.Account" />
+	<bean id="logger" class="com.tcs.spring.aop.beans.aspects.Logger"/>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(void com.tcs.spring.aop.beans.*.*(..))" id="bankpoint"/>
+		<aop:aspect id="loggeraspect" ref="logger">
+			<aop:before method="log" pointcut-ref="bankpoint"/>
+			<aop:after method="notifyService" pointcut-ref="bankpoint"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
